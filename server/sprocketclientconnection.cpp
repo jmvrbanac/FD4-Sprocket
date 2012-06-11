@@ -13,6 +13,12 @@ SprocketClientConnection::SprocketClientConnection(QObject *parent) :
     // Add Commands
     availableCommands->append(new BuildCommand());
 }
+void SprocketClientConnection::forceDisconnectClient()
+{
+    clientSocket->disconnectFromHost();
+    clientSocket->waitForDisconnected();
+}
+
 /**
  * Processes the commands based on the command classes added to the constructor
  */

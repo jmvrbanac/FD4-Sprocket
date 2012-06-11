@@ -5,6 +5,7 @@ SprocketServer::SprocketServer(QObject *parent) :
 {
     server = new QTcpServer(this);
     clients = new QList<SprocketClientConnection*>();
+    active = false;
 }
 SprocketServer::~SprocketServer()
 {
@@ -19,23 +20,33 @@ SprocketServer::~SprocketServer()
 void SprocketServer::startServer(QHostAddress ipAddress, quint16 port)
 {
     qDebug() << "Starting Server";
-    bool active = false;
     QHostAddress address = QHostAddress::LocalHost;//getCurrentAddress();
 
     active = server->listen(address, port);
 
     if (!active){
-
+        qDebug() << "Cannot start server";
         stopServer();
     }
 
     connect(server, SIGNAL(newConnection()), this, SLOT(newClientActive()));
-
-    //server->waitForNewConnection(30000);
 }
+bool SprocketServer::isActive()
+{
+    return active;
+}
+
 void SprocketServer::stopServer()
 {
+    qDebug() << "Stopping Server";
+
+    for (int i=0; i < clients->length(); i++)
+    {
+        clients->at(i)->forceDisconnectClient();
+    }
+
     server->close();
+    active = false;
 }
 
 void SprocketServer::newClientActive()

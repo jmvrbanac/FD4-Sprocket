@@ -17,6 +17,7 @@ public:
     QTcpSocket* getSocket();
     void sendString(QString data);
     void processComplete();
+    void forceDisconnectClient();
 signals:
     
 public slots:

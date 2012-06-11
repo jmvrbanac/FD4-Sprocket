@@ -16,12 +16,14 @@ public:
     ~SprocketServer();
     void startServer(QHostAddress ipAddress, quint16 port);
     void stopServer();
+    bool isActive();
     
 signals:
     
 public slots:
 
 private:
+    bool active;
     QHostAddress getCurrentAddress();
     QTcpServer *server;
     QList<SprocketClientConnection*> *clients;

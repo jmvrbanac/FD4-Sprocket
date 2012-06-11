@@ -1,8 +1,14 @@
 FD4 - Sprocket
 =================
-Author: John Vrbanac
+Author: John Vrbanac<br/>
+Status: In Development (not functional)
 
-FD4 - Sprocket is designed to enable remote FlashDevelop project building. Initial planned functionality is to work with both the client and server being on the same machine. Future functionality will enable full remote server compiling of swf files.
+FD4 - Sprocket is designed to enable remote FlashDevelop project building. The sprocket is divided into two different components, the cross-platform server and the FlashDevelop 4 plugin.
+
+Initial planned functionality is to develop both the client and server applications to be used on the same machine (i.e. communicate through localhost).
+
+Future functionality: <br/>
+Enable full remote server compiling and retrieval of swf files for FlashDevelop 4
 
 
 License:
